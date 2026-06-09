@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WM 2026 Tippspiel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="authContainer" class="auth-shell">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-badge">⚽</div>
+        <div>
+          <h1>WM 2026 Tippspiel</h1>
+          <p>Login, Tipps, Tabelle und Adminbereich</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <section class="panel">
+          <h2>Anmelden</h2>
+          <label for="loginEmail">E-Mail</label>
+          <input id="loginEmail" type="email" autocomplete="email" placeholder="name@beispiel.de" />
+          <label for="loginPassword">Passwort</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" />
+          <button id="loginBtn" class="primary">Anmelden</button>
+        </section>
+
+        <section class="panel">
+          <h2>Registrieren</h2>
+          <label for="registerUsername">Benutzername</label>
+          <input id="registerUsername" type="text" maxlength="24" placeholder="Max" />
+          <label for="registerEmail">E-Mail</label>
+          <input id="registerEmail" type="email" autocomplete="email" placeholder="name@beispiel.de" />
+          <label for="registerPassword">Passwort</label>
+          <input id="registerPassword" type="password" autocomplete="new-password" placeholder="Mindestens 6 Zeichen" />
+          <button id="registerBtn" class="primary">Registrieren</button>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="appContainer" class="app-shell hidden">
+    <header class="topbar">
+      <div>
+        <h1>WM 2026 Tippspiel</h1>
+        <p id="welcomeText">Willkommen</p>
+      </div>
+      <div class="topbar-actions">
+        <button id="logoutBtn" class="secondary">Logout</button>
+      </div>
+    </header>
+
+    <nav class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="tab-matches">Spiel-Übersicht</button>
+      <button class="tab-btn" data-tab="tab-mytips">Meine getippten Spiele</button>
+      <button class="tab-btn" data-tab="tab-table">Tabelle</button>
+      <button class="tab-btn" data-tab="tab-settings">Einstellungen</button>
+      <button id="adminTabBtn" class="tab-btn hidden" data-tab="tab-admin">Admin</button>
+    </nav>
+
+    <main class="main-content">
+      <section id="tab-matches" class="tab-panel">
+        <div class="section-head">
+          <h2>Alle Spiele</h2>
+          <p>Tippen ist bis Spielbeginn möglich. Danach wird das Feld gesperrt.</p>
+        </div>
+        <div id="matchesContainer" class="cards"></div>
+      </section>
+
+      <section id="tab-mytips" class="tab-panel hidden">
+        <div class="section-head">
+          <h2>Meine getippten Spiele</h2>
+          <p>Hier siehst du alle deine abgegebenen Tipps mit Status und Punkten.</p>
+        </div>
+        <div id="myTipsContainer" class="cards"></div>
+      </section>
+
+      <section id="tab-table" class="tab-panel hidden">
+        <div class="section-head">
+          <h2>Tabelle</h2>
+          <p>Alle registrierten Spieler nach Punkten sortiert.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Platz</th>
+                <th>Spieler</th>
+                <th>Punkte</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-settings" class="tab-panel hidden">
+        <div class="section-head">
+          <h2>Einstellungen</h2>
+          <p>Profil bearbeiten, Account löschen oder abmelden.</p>
+        </div>
+
+        <div class="grid-2">
+          <section class="panel">
+            <h3>Profil bearbeiten</h3>
+            <label for="newUsername">Benutzername</label>
+            <input id="newUsername" type="text" maxlength="24" />
+            <button id="saveProfileBtn" class="primary">Speichern</button>
+          </section>
+
+          <section class="panel danger-panel">
+            <h3>Gefährliche Aktion</h3>
+            <p>Der Account wird gelöscht. Deine eigenen Tipps bleiben technisch in der Datenbank, falls du die Historie behalten willst. Du kannst das in den Regeln oder im Admin später anpassen.</p>
+            <button id="deleteAccountBtn" class="danger">Account löschen</button>
+          </section>
+        </div>
+      </section>
+
+      <section id="tab-admin" class="tab-panel hidden">
+        <div class="section-head">
+          <h2>Adminbereich</h2>
+          <p>Spiele anlegen, bearbeiten, Ergebnisse eintragen und löschen.</p>
+        </div>
+
+        <section class="panel">
+          <h3>Spiel anlegen</h3>
+          <div class="grid-3">
+            <div>
+              <label for="homeTeam">Heimteam</label>
+              <input id="homeTeam" type="text" placeholder="Deutschland" />
+            </div>
+            <div>
+              <label for="awayTeam">Auswärtsteam</label>
+              <input id="awayTeam" type="text" placeholder="Brasilien" />
+            </div>
+            <div>
+              <label for="matchDate">Datum / Uhrzeit</label>
+              <input id="matchDate" type="datetime-local" />
+            </div>
+          </div>
+          <button id="createMatchBtn" class="primary">Spiel erstellen</button>
+        </section>
+
+        <div id="adminMatches" class="cards"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
